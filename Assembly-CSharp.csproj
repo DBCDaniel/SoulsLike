@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{A31BF97F-8E93-6083-BC2F-65C453E25A69}</ProjectGuid>
+    <ProjectGuid>{B5AF10B7-4758-EF4F-3F13-500E06D4522C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -63,35 +63,38 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\AssignBoolSMB.cs" />
+    <Compile Include="Assets\Scripts\AssignBoolSMB.cs" />
+    <Compile Include="Assets\Scripts\Controller\CameraManager.cs" />
     <Compile Include="Assets\Scripts\Controller\InputHandler.cs" />
+    <Compile Include="Assets\Scripts\Controller\PlayerStateManager.cs" />
+    <Compile Include="Assets\Scripts\Singleton.cs" />
     <Compile Include="Assets\Scripts\Utilities\HumanoidAnimationTester.cs" />
     <Reference Include="Unity.Timeline.Editor">
-      <HintPath>D:/HeartlockGames/Projects/SoulsLike/SoulsLikeTemplate/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+      <HintPath>D:/VersionControl/GitHub/SoulsLike/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VSCode.Editor">
-      <HintPath>D:/HeartlockGames/Projects/SoulsLike/SoulsLikeTemplate/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
+      <HintPath>D:/VersionControl/GitHub/SoulsLike/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>D:/HeartlockGames/Projects/SoulsLike/SoulsLikeTemplate/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>D:/VersionControl/GitHub/SoulsLike/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
-      <HintPath>D:/HeartlockGames/Projects/SoulsLike/SoulsLikeTemplate/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+      <HintPath>D:/VersionControl/GitHub/SoulsLike/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline">
-      <HintPath>D:/HeartlockGames/Projects/SoulsLike/SoulsLikeTemplate/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+      <HintPath>D:/VersionControl/GitHub/SoulsLike/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
     </Reference>
     <Reference Include="Unity.CollabProxy.Editor">
-      <HintPath>D:/HeartlockGames/Projects/SoulsLike/SoulsLikeTemplate/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+      <HintPath>D:/VersionControl/GitHub/SoulsLike/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Rider.Editor">
-      <HintPath>D:/HeartlockGames/Projects/SoulsLike/SoulsLikeTemplate/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+      <HintPath>D:/VersionControl/GitHub/SoulsLike/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>D:/HeartlockGames/Projects/SoulsLike/SoulsLikeTemplate/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>D:/VersionControl/GitHub/SoulsLike/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
-      <HintPath>D:/HeartlockGames/Projects/SoulsLike/SoulsLikeTemplate/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+      <HintPath>D:/VersionControl/GitHub/SoulsLike/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>D:/Programmer/Unity/Editor Versions/2019.2.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
