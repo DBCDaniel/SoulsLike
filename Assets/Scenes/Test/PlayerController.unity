@@ -384,7 +384,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 459907615}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cb025ea2d18a77a49bb65165755ea465, type: 3}
   m_Name: 
@@ -691,12 +691,12 @@ MonoBehaviour:
   horizontal: 0
   moveAmount: 0
   moveDirection: {x: 0, y: 0, z: 0}
-  movementSpeed: 2
-  sprintSpeed: 3.75
+  movementSpeed: 3.5
+  sprintSpeed: 5.25
   isSprinting: 0
   anim: {fileID: 0}
   rb: {fileID: 0}
-  delta: 0
+  deltaTime: 0
 --- !u!1 &791292517
 GameObject:
   m_ObjectHideFlags: 0

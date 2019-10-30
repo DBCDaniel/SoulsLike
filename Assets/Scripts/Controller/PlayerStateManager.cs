@@ -15,6 +15,7 @@ public class PlayerStateManager : MonoBehaviour
     [Header("Stats")]
     public float movementSpeed = 2;
     public float sprintSpeed = 3.75f;
+    public float rotationSpeed = 5f;
 
     [Header("States")]
     public bool isSprinting = false;
@@ -25,7 +26,7 @@ public class PlayerStateManager : MonoBehaviour
     public Rigidbody rb;
 
     [HideInInspector]
-    public float delta;
+    public float deltaTime;
 
     public void Init()
     {
@@ -70,14 +71,16 @@ public class PlayerStateManager : MonoBehaviour
         }
     }
 
-    public void FixedTick(float d)
+    public void FixedTick(float deltaTime)
     {
-        delta = d;
+        this.deltaTime = deltaTime;
 
-        Movement();
+        HandleMovement();
+        HandleRotation();
+        HandleMovementAnimations();
     }
 
-    private void Movement()
+    private void HandleMovement()
     {
         rb.drag = (moveAmount > 0) ? 0 : 4;
 
@@ -89,5 +92,26 @@ public class PlayerStateManager : MonoBehaviour
         }
 
         rb.velocity = moveDirection * (targetSpeed * moveAmount);
+    }
+
+    private void HandleRotation()
+    {
+        Vector3 targetDir = moveDirection;
+        targetDir.y = 0;
+
+        if (targetDir == Vector3.zero)
+        {
+            targetDir = transform.forward;
+        }
+
+        Quaternion targetLookRotation = Quaternion.LookRotation(targetDir);
+        Quaternion targetRotation = Quaternion.Slerp(transform.rotation, targetLookRotation, deltaTime * moveAmount * rotationSpeed);
+        transform.rotation = targetRotation;
+
+    }
+
+    private void HandleMovementAnimations()
+    {
+        anim.SetFloat("vertical", moveAmount, 0.4f, deltaTime);
     }
 }
