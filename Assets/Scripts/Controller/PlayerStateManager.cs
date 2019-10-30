@@ -16,9 +16,13 @@ public class PlayerStateManager : MonoBehaviour
     public float movementSpeed = 2;
     public float sprintSpeed = 3.75f;
     public float rotationSpeed = 5f;
+    public float distanceToGround = 0.5f;
+    public float groundSnappingDistance = 0.3f;
 
     [Header("States")]
     public bool isSprinting = false;
+    public bool isGrounded = false;
+    public bool isLockedOn = false;
 
     [HideInInspector]
     public Animator anim;
@@ -27,6 +31,8 @@ public class PlayerStateManager : MonoBehaviour
 
     [HideInInspector]
     public float deltaTime;
+    [HideInInspector]
+    public LayerMask ignoredLayers;
 
     public void Init()
     {
@@ -36,6 +42,11 @@ public class PlayerStateManager : MonoBehaviour
         rb.angularDrag = 999;
         rb.drag = 4;
         rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+
+        gameObject.layer = 8;
+        ignoredLayers = ~(1 << 9);
+
+        anim.SetBool("isGrounded", true);
     }
 
     // Start is called before the first frame update
@@ -80,38 +91,75 @@ public class PlayerStateManager : MonoBehaviour
         HandleMovementAnimations();
     }
 
+    public void Tick(float deltaTime)
+    {
+        this.deltaTime = deltaTime;
+
+        isGrounded = CheckGrounded(); 
+        anim.SetBool("isGrounded", isGrounded);
+
+    }
+
+    public bool CheckGrounded()
+    {
+        bool r = false;
+
+        Vector3 origin = transform.position + (Vector3.up * distanceToGround);
+        Vector3 dir = -Vector3.up;
+        float castDistance = distanceToGround + groundSnappingDistance;
+        RaycastHit hit;
+        if (Physics.Raycast(origin, dir, out hit, castDistance))
+        {
+            r = true;
+            Vector3 targetPosition = hit.point;
+            transform.position = targetPosition;
+        }
+
+        return r;
+    }
+
     private void HandleMovement()
     {
-        rb.drag = (moveAmount > 0) ? 0 : 4;
+        rb.drag = (moveAmount > 0 || !isGrounded) ? 0 : 4;
 
         float targetSpeed = movementSpeed;
 
         if (isSprinting)
         {
             targetSpeed = sprintSpeed;
+            isLockedOn = false;
         }
 
-        rb.velocity = moveDirection * (targetSpeed * moveAmount);
+        if (isGrounded)
+        {
+            rb.velocity = moveDirection * (targetSpeed * moveAmount);
+        }
+
     }
 
     private void HandleRotation()
     {
-        Vector3 targetDir = moveDirection;
-        targetDir.y = 0;
-
-        if (targetDir == Vector3.zero)
+        if (!isLockedOn)
         {
-            targetDir = transform.forward;
-        }
+            Vector3 targetDir = moveDirection;
+            targetDir.y = 0;
 
-        Quaternion targetLookRotation = Quaternion.LookRotation(targetDir);
-        Quaternion targetRotation = Quaternion.Slerp(transform.rotation, targetLookRotation, deltaTime * moveAmount * rotationSpeed);
-        transform.rotation = targetRotation;
+            if (targetDir == Vector3.zero)
+            {
+                targetDir = transform.forward;
+            }
+
+            Quaternion targetLookRotation = Quaternion.LookRotation(targetDir);
+            Quaternion targetRotation = Quaternion.Slerp(transform.rotation, targetLookRotation, deltaTime * moveAmount * rotationSpeed);
+            transform.rotation = targetRotation;
+        }
 
     }
 
     private void HandleMovementAnimations()
     {
+        anim.SetBool("isSprinting", isSprinting);
+        anim.SetBool("isLockedOn", isLockedOn);
         anim.SetFloat("vertical", moveAmount, 0.4f, deltaTime);
     }
 }

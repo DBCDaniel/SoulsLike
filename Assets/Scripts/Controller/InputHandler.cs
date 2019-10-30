@@ -5,6 +5,7 @@ using UnityEngine;
 public class InputHandler : MonoBehaviour
 {
     float vertical, horizontal, deltaTime;
+    bool sprintInput;
 
     PlayerStateManager stateManager;
 
@@ -18,10 +19,11 @@ public class InputHandler : MonoBehaviour
     }
 
     // Update is called once per frame
+
     void Update()
     {
         deltaTime = Time.deltaTime;
-        CameraManager.Instance.Tick(deltaTime);
+        stateManager.Tick(deltaTime);
     }
 
     private void FixedUpdate()
@@ -30,12 +32,15 @@ public class InputHandler : MonoBehaviour
         GetInput();
         UpdateStates();
         stateManager.FixedTick(deltaTime);
+        CameraManager.Instance.Tick(deltaTime);
     }
 
     private void GetInput()
     {
         vertical = Input.GetAxis("Vertical");
         horizontal = Input.GetAxis("Horizontal");
+
+        sprintInput = Input.GetButton("Sprint Input");
     }
 
     private void UpdateStates()
@@ -48,5 +53,14 @@ public class InputHandler : MonoBehaviour
         stateManager.moveDirection = (v + h).normalized;
         float m = Mathf.Abs(horizontal) + Mathf.Abs(vertical);
         stateManager.moveAmount = Mathf.Clamp01(m);
+
+        if (sprintInput)
+        {
+            stateManager.isSprinting = (stateManager.moveAmount > 0);
+        }
+        else
+        {
+            stateManager.isSprinting = false;
+        }
     }
 }

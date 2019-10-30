@@ -643,8 +643,8 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
+  m_Radius: 0.2
+  m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
 --- !u!4 &771417099
@@ -655,7 +655,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 771417096}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 3.1299999, z: 0}
+  m_LocalPosition: {x: 0, y: 8.59, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 459907618}
@@ -692,11 +692,18 @@ MonoBehaviour:
   moveAmount: 0
   moveDirection: {x: 0, y: 0, z: 0}
   movementSpeed: 3.5
-  sprintSpeed: 5.25
+  sprintSpeed: 5.5
+  rotationSpeed: 9
+  distanceToGround: 0.5
+  groundSnappingDistance: 0.3
   isSprinting: 0
+  isGrounded: 0
   anim: {fileID: 0}
   rb: {fileID: 0}
   deltaTime: 0
+  ignoredLayers:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &791292517
 GameObject:
   m_ObjectHideFlags: 0
@@ -1157,7 +1164,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1094682362}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 5, z: 0}
+  m_LocalPosition: {x: 0, y: 10.46, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1881108885}
@@ -1177,7 +1184,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LockedOn: 0
-  followSpeed: 9
+  followSpeed: 3
   mouseSpeed: 2
   controllerSpeed: 5
   target: {fileID: 0}
