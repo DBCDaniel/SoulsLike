@@ -64,6 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\AssignBoolSMB.cs" />
+    <Compile Include="Assets\Scripts\Controller\AnimatorHook.cs" />
     <Compile Include="Assets\Scripts\Controller\CameraManager.cs" />
     <Compile Include="Assets\Scripts\Controller\InputHandler.cs" />
     <Compile Include="Assets\Scripts\Controller\PlayerStateManager.cs" />
